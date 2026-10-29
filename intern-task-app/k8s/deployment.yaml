@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intern-app-deployment
+  labels:
+    app: intern-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: intern-app
+  template:
+    metadata:
+      labels:
+        app: intern-app
+    spec:
+      containers:
+      - name: intern-app
+        image: intern-app:latest
+        imagePullPolicy: Never # Use 'IfNotPresent' or pull from a registry if pushing to DockerHub/ECR
+        ports:
+        - containerPort: 8080
